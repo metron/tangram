@@ -22,7 +22,7 @@ def save_as_eps(canvas, file_name):
 
 
 class Tangram:
-    def __init__(self, l1=98, silhouette=False):
+    def __init__(self, l1=103, silhouette=False):
         self.l1 = l1 = mm_to_px(l1)  # l1 - гипотенуза большого треугольника
         self.l2 = l2 = get_leg_length(l1)  # катет большого треугольника = гипотенуза среднего треугольника
         self.l3 = l3 = get_leg_length(l2)  # катет среднего треугольника = гипотенуза маленького треугольника
@@ -43,8 +43,8 @@ class Tangram:
         # WIDTH = int(mm_to_px(210))
         # HEIGHT = int(mm_to_px(297))
         # альбомная
-        WIDTH = int(mm_to_px(297))
-        HEIGHT = int(mm_to_px(210))
+        self.WIDTH = WIDTH = int(mm_to_px(287))
+        self.HEIGHT = HEIGHT = int(mm_to_px(200))
 
         # Screen
         screen = Tk()
@@ -57,6 +57,8 @@ class Tangram:
         canvas.place(relx=0.5, rely=0.5, anchor=CENTER)
         self.tt = turtle.RawTurtle(canvas)
         self.tt.penup()
+        if silhouette:
+            self.tt.color("#c0c0c0")
 
     def draw_simple(self, simple_name, start=0):
         color, operations = self.simples[simple_name]
@@ -74,7 +76,8 @@ class Tangram:
 
     def pistolet(self):
         y0 = self.l1 / 2
-        self.tt.goto(0, y0)
+        x0 = 215
+        self.tt.goto(x0, y0)
         self.tt.right(135)
         self.draw_simple("Большой треугольник 1-го цвета")
 
@@ -84,13 +87,13 @@ class Tangram:
         self.tt.right(45)
         self.draw_simple("Большой треугольник 2-го цвета")
 
-        self.tt.goto(0, y0)
+        self.tt.goto(x0, y0)
         self.tt.right(180)
         self.tt.forward(self.l2)
         self.tt.right(180)
         self.draw_simple("Средний треугольник 3-го цвета")
 
-        self.tt.goto(0, y0)
+        self.tt.goto(x0, y0)
         self.tt.right(45)
         self.draw_simple("Квадрат 6-го цвета")
 
@@ -105,6 +108,10 @@ class Tangram:
         self.tt.forward(self.l4)
         self.tt.right(180)
         self.draw_simple("Маленький треугольник 5-го цвета")
+
+        self.tt.goto(self.WIDTH / 2 - 3000, -self.HEIGHT / 2 + 500)
+        self.tt.color("black")
+        self.tt.write("Пистолет", font=("Arial", 400, "normal"))
 
 
 tan = Tangram(silhouette=True)
