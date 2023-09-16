@@ -30,95 +30,129 @@ class Tangram:
         self.silhouette = silhouette
 
         self.simples = {
-            "Большой треугольник 1-го цвета": ("green", [l1, 135, l2, 90, l2, 135]),
-            "Большой треугольник 2-го цвета": ("blue", [l1, 135, l2, 90, l2, 135]),
-            "Средний треугольник 3-го цвета": ("red", [l2, 135, l3, 90, l3, 135]),
-            "Маленький треугольник 4-го цвета": ("yellow", [l3, 135, l4, 90, l4, 135]),
-            "Маленький треугольник 5-го цвета": ("#e0e0e0", [l3, 135, l4, 90, l4, 135]),
-            "Квадрат 6-го цвета": ("orange", [l4, 90, l4, 90, l4, 90, l4, 90]),
-            "Параллелограмм 7-го цвета": ("purple", [l3, 135, l4, 45, l3, 135, l4, 45]),
+            "1 большой треугольник": ("green", [l1, 135, l2, 90, l2, 135]),
+            "2 большой треугольник": ("blue", [l1, 135, l2, 90, l2, 135]),
+            "3 средний треугольник": ("red", [l2, 135, l3, 90, l3, 135]),
+            "4 маленький треугольник": ("yellow", [l3, 135, l4, 90, l4, 135]),
+            "5 маленький треугольник": ("#e0e0e0", [l3, 135, l4, 90, l4, 135]),
+            "6 квадрат": ("orange", [l4, 90, l4, 90, l4, 90, l4, 90]),
+            "7 параллелограмм": ("purple", [l3, 135, l4, 45, l3, 135, l4, 45]),
         }
 
         # книжная
         # WIDTH = int(mm_to_px(210))
         # HEIGHT = int(mm_to_px(297))
         # альбомная
-        self.WIDTH = WIDTH = int(mm_to_px(287))
-        self.HEIGHT = HEIGHT = int(mm_to_px(200))
+        self.WIDTH = int(mm_to_px(287))
+        self.HEIGHT = int(mm_to_px(200))
+        self.add_canvas()
 
+    def add_canvas(self):
         # Screen
         screen = Tk()
-        screen.geometry("{0}x{1}+10+10".format(WIDTH, HEIGHT))
+        screen.geometry("{0}x{1}+10+10".format(self.WIDTH, self.HEIGHT))
         screen.title("Example Code")
         screen.tk.call('tk', 'scaling', 10.0)
         # screen.configure(bg="Gray")
         # Canvas
-        self.canvas = canvas = Canvas(master=screen, width=str(WIDTH), height=str(HEIGHT))
+        self.canvas = canvas = Canvas(master=screen, width=str(self.WIDTH), height=str(self.HEIGHT))
         canvas.place(relx=0.5, rely=0.5, anchor=CENTER)
         self.tt = turtle.RawTurtle(canvas)
+        self.tt.hideturtle()
+        self.tt.speed(0)
         self.tt.penup()
-        if silhouette:
+        if self.silhouette:
             self.tt.color("#c0c0c0")
 
-    def draw_simple(self, simple_name, start=0):
+    def write_name(self, name):
+        self.tt.goto(self.WIDTH / 2 - 3000, -self.HEIGHT / 2 + 500)
+        self.tt.color("black")
+        self.tt.write(name, font=("Arial", 400, "normal"))
+
+    def follow_steps(self, operations, steps_num, start, reverse_path):
+        for i in range(steps_num):
+            indx = (i + start) % len(operations)
+            if indx % 2:
+                if reverse_path:
+                    self.tt.left(operations[indx])
+                else:
+                    self.tt.right(operations[indx])
+            else:
+                self.tt.forward(operations[indx])
+
+    def draw_simple(self, simple_name, start=0, add_path=0, reverse_path=False):
         color, operations = self.simples[simple_name]
         if not self.silhouette:
             self.tt.color(color)
         self.tt.begin_fill()
         self.tt.pendown(),
-        operation_pairs = len(operations) // 2
-        for i in range(operation_pairs):
-            indx = 2 * ((i + start) % operation_pairs)
-            self.tt.forward(operations[indx])
-            self.tt.right(operations[indx + 1])
+        self.follow_steps(operations, len(operations), start, reverse_path)
         self.tt.penup()
         self.tt.end_fill()
+        self.follow_steps(operations, add_path, start, reverse_path)
 
     def pistolet(self):
         y0 = self.l1 / 2
         x0 = 215
         self.tt.goto(x0, y0)
         self.tt.right(135)
-        self.draw_simple("Большой треугольник 1-го цвета")
+        self.draw_simple("1 большой треугольник")
 
         self.tt.forward(self.l1 * 2)
         self.tt.right(135)
         self.tt.forward(self.l2 / 2)
         self.tt.right(45)
-        self.draw_simple("Большой треугольник 2-го цвета")
+        self.draw_simple("2 большой треугольник")
 
         self.tt.goto(x0, y0)
         self.tt.right(180)
         self.tt.forward(self.l2)
         self.tt.right(180)
-        self.draw_simple("Средний треугольник 3-го цвета")
+        self.draw_simple("3 средний треугольник")
 
         self.tt.goto(x0, y0)
         self.tt.right(45)
-        self.draw_simple("Квадрат 6-го цвета")
+        self.draw_simple("6 квадрат")
 
         self.tt.forward(self.l4)
-        self.draw_simple("Маленький треугольник 4-го цвета", start=2)
+        self.draw_simple("4 маленький треугольник", start=4)
 
         self.tt.forward(self.l4)
-        self.draw_simple("Параллелограмм 7-го цвета")
+        self.draw_simple("7 параллелограмм")
 
         self.tt.forward(self.l3)
         self.tt.right(135)
         self.tt.forward(self.l4)
         self.tt.right(180)
-        self.draw_simple("Маленький треугольник 5-го цвета")
+        self.draw_simple("5 маленький треугольник")
 
-        self.tt.goto(self.WIDTH / 2 - 3000, -self.HEIGHT / 2 + 500)
-        self.tt.color("black")
-        self.tt.write("Пистолет", font=("Arial", 400, "normal"))
+        self.write_name("Пистолет")
 
+    def home(self):
+        y0 = 0
+        x0 = -2500
+        self.tt.goto(x0, y0)
+        self.draw_simple("1 большой треугольник", add_path=2, reverse_path=True)
+        self.draw_simple("7 параллелограмм", add_path=2)
+        self.draw_simple("6 квадрат", reverse_path=True)
+
+        self.tt.goto(x0, y0)
+        self.tt.forward((self.l1 + self.l4) / 2)
+        self.draw_simple("3 средний треугольник", start=2)
+        self.tt.right(45)
+        self.draw_simple("2 большой треугольник", start=4)
+        self.tt.right(90)
+        self.draw_simple("4 маленький треугольник", start=2, add_path=1)
+        self.draw_simple("5 маленький треугольник", start=4)
+
+        self.write_name("Дом")
 
 tan = Tangram(silhouette=True)
-tan.tt.hideturtle()
-tan.tt.speed(0)
-tan.pistolet()
 
-save_as_png(tan.canvas, "pistolet.png")
+tan.pistolet()
+save_as_png(tan.canvas, "result_images/pistolet.png")
 # save_as_eps(tt.getscreen().getcanvas(), "pistolet.eps")
 
+tan.add_canvas()
+tan.home()
+save_as_png(tan.canvas, "result_images/home.png")
