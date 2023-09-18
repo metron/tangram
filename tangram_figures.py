@@ -96,33 +96,16 @@ class Tangram:
         x0 = 215
         self.tt.goto(x0, y0)
         self.tt.right(135)
-        self.draw_simple("1 большой треугольник")
-
-        self.tt.forward(self.l1 * 2)
-        self.tt.right(135)
-        self.tt.forward(self.l2 / 2)
-        self.tt.right(45)
-        self.draw_simple("2 большой треугольник")
+        self.draw_simple("1 большой треугольник", add_path=2)
+        self.tt.forward(self.l4)
+        self.tt.right(180)
+        self.draw_simple("2 большой треугольник", start=2)
 
         self.tt.goto(x0, y0)
-        self.tt.right(180)
-        self.tt.forward(self.l2)
-        self.tt.right(180)
-        self.draw_simple("3 средний треугольник")
-
-        self.tt.goto(x0, y0)
-        self.tt.right(45)
-        self.draw_simple("6 квадрат")
-
-        self.tt.forward(self.l4)
-        self.draw_simple("4 маленький треугольник", start=4)
-
-        self.tt.forward(self.l4)
-        self.draw_simple("7 параллелограмм")
-
-        self.tt.forward(self.l3)
-        self.tt.right(135)
-        self.tt.forward(self.l4)
+        self.draw_simple("3 средний треугольник", start=2)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=4)
+        self.draw_simple("4 маленький треугольник", start=2, add_path=3)
+        self.draw_simple("7 параллелограмм", add_path=3)
         self.tt.right(180)
         self.draw_simple("5 маленький треугольник")
 
