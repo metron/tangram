@@ -130,12 +130,40 @@ class Tangram:
 
         self.write_name("Дом")
 
+    def korablik(self):
+        y0 = - self.l2 / 2
+        x0 = - self.l2 / 2
+        self.tt.goto(x0, y0)
+        self.tt.left(45)
+        self.draw_simple("1 большой треугольник", reverse_path=True)
+        self.draw_simple("2 большой треугольник")
+        self.tt.left(45)
+        self.draw_simple("4 маленький треугольник", reverse_path=True, start=2)
+        self.tt.left(90)
+        self.draw_simple("7 параллелограмм", start=2)
+        self.tt.left(180)
+        self.tt.forward(self.l2)
+        self.draw_simple("5 маленький треугольник", start=4, reverse_path=True, add_path=2)
+        self.draw_simple("3 средний треугольник", start=4)
+        self.tt.right(45)
+        self.tt.goto(x0, y0)
+        self.tt.forward(self.l2)
+        self.tt.right(90)
+        self.tt.forward((self.l2 - self.l4) / 2)
+        self.draw_simple("6 квадрат", reverse_path=True)
+        self.write_name("Кораблик")
+
+
 tan = Tangram(silhouette=True)
 
-tan.pistolet()
-save_as_png(tan.canvas, "result_images/pistolet.png")
+# tan.pistolet()
+# save_as_png(tan.canvas, "result_images/pistolet.png")
 # save_as_eps(tt.getscreen().getcanvas(), "pistolet.eps")
 
+# tan.add_canvas()
+# tan.home()
+# save_as_png(tan.canvas, "result_images/home.png")
+
 tan.add_canvas()
-tan.home()
-save_as_png(tan.canvas, "result_images/home.png")
+tan.korablik()
+save_as_png(tan.canvas, "result_images/korablik.png")
