@@ -226,6 +226,29 @@ class Tangram:
         self.write_name("Чайник")
         save_as_png(tan.canvas, "result_images/chaynik.png")
 
+    def korablik2(self):
+        tan.add_canvas()
+        y0 = -450
+        x0 = 0
+        self.tt.goto(x0, y0)
+        self.draw_simple("1 большой треугольник", reverse_path=True, start=4, add_path=1)
+        self.tt.right(135)
+        self.draw_simple("4 маленький треугольник", add_path=2)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=4)
+        self.tt.forward(self.l4 / 1.5)
+        self.tt.right(90)
+        self.draw_simple("2 большой треугольник", start=4)
+        self.tt.right(90)
+        self.tt.forward(self.l4 / 1.5 + self.l2)
+        self.draw_simple("5 маленький треугольник", start=4)
+        self.tt.right(180)
+        self.tt.forward(self.l4 + self.l2)
+        self.tt.right(45)
+        self.draw_simple("7 параллелограмм", reverse_path=True)
+        self.draw_simple("3 средний треугольник", start=2)
+        self.write_name("Кораблик 2")
+        save_as_png(tan.canvas, "result_images/korablik2.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -233,4 +256,5 @@ tan = Tangram(silhouette=True)
 # tan.korablik()
 # tan.utka()
 # tan.vertolyot()
-tan.chaynik()
+# tan.chaynik()
+tan.korablik2()
