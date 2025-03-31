@@ -180,10 +180,32 @@ class Tangram:
         self.write_name("Утка")
         save_as_png(tan.canvas, "result_images/utka.png")
 
+    def vertolyot(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = -4500
+        self.tt.goto(x0, y0)
+        self.tt.left(45)
+        self.draw_simple("6 квадрат", add_path=4)
+        self.tt.forward(self.l4 / 2)
+        self.tt.left(135)
+        self.draw_simple("4 маленький треугольник", add_path=1)
+        self.tt.right(45)
+        self.draw_simple("5 маленький треугольник", start=4)
+        self.tt.left(90)
+        self.draw_simple("1 большой треугольник", start=4, add_path=2)
+        self.draw_simple("2 большой треугольник", reverse_path=True)
+        self.tt.left(90)
+        self.draw_simple("3 средний треугольник", reverse_path=True)
+        self.tt.left(135)
+        self.draw_simple("7 параллелограмм", start=6, reverse_path=True)
+        self.write_name("Вертолёт")
+        save_as_png(tan.canvas, "result_images/vertolyot.png")
 
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
 # tan.home()
 # tan.korablik()
-tan.utka()
+# tan.utka()
+tan.vertolyot()
