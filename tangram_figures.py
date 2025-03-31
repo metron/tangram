@@ -67,7 +67,7 @@ class Tangram:
     def write_name(self, name):
         self.tt.goto(self.WIDTH / 2 - 3000, -self.HEIGHT / 2 + 500)
         self.tt.color("black")
-        self.tt.write(name, font=("Arial", 400, "normal"))
+        self.tt.write(name, font=("DejaVuSans", 1800, "normal"))
 
     def follow_steps(self, operations, steps_num, start, reverse_path):
         for i in range(steps_num):
@@ -92,6 +92,7 @@ class Tangram:
         self.follow_steps(operations, add_path, start, reverse_path)
 
     def pistolet(self):
+        tan.add_canvas()
         y0 = self.l1 / 2
         x0 = 215
         self.tt.goto(x0, y0)
@@ -110,8 +111,11 @@ class Tangram:
         self.draw_simple("5 маленький треугольник")
 
         self.write_name("Пистолет")
+        save_as_png(tan.canvas, "result_images/pistolet.png")
+        # save_as_eps(tt.getscreen().getcanvas(), "pistolet.eps")
 
     def home(self):
+        tan.add_canvas()
         y0 = 0
         x0 = -2500
         self.tt.goto(x0, y0)
@@ -129,8 +133,10 @@ class Tangram:
         self.draw_simple("5 маленький треугольник", start=4)
 
         self.write_name("Дом")
+        save_as_png(tan.canvas, "result_images/home.png")
 
     def korablik(self):
+        tan.add_canvas()
         y0 = - self.l2 / 2
         x0 = - self.l2 / 2
         self.tt.goto(x0, y0)
@@ -152,18 +158,32 @@ class Tangram:
         self.tt.forward((self.l2 - self.l4) / 2)
         self.draw_simple("6 квадрат", reverse_path=True)
         self.write_name("Кораблик")
+        save_as_png(tan.canvas, "result_images/korablik.png")
+
+    def utka(self):
+        tan.add_canvas()
+        y0 = -1000
+        x0 = -3500
+        self.tt.goto(x0, y0)
+        self.tt.left(45)
+        self.draw_simple("4 маленький треугольник", reverse_path=True, start=2, add_path=3)
+        self.tt.right(90)
+        self.draw_simple("6 квадрат", add_path=5)
+        self.tt.left(45)
+        self.draw_simple("7 параллелограмм", reverse_path=True, add_path=1)
+        self.tt.left(90)
+        self.draw_simple("3 средний треугольник", reverse_path=True, add_path=3)
+        self.tt.right(90)
+        self.draw_simple("1 большой треугольник", start=4, add_path=2)
+        self.draw_simple("2 большой треугольник", reverse_path=True, add_path=3)
+        self.draw_simple("5 маленький треугольник", start=4, reverse_path=True)
+        self.write_name("Утка")
+        save_as_png(tan.canvas, "result_images/utka.png")
 
 
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
-# save_as_png(tan.canvas, "result_images/pistolet.png")
-# save_as_eps(tt.getscreen().getcanvas(), "pistolet.eps")
-
-# tan.add_canvas()
 # tan.home()
-# save_as_png(tan.canvas, "result_images/home.png")
-
-tan.add_canvas()
-tan.korablik()
-save_as_png(tan.canvas, "result_images/korablik.png")
+# tan.korablik()
+tan.utka()
