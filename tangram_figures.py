@@ -202,10 +202,35 @@ class Tangram:
         self.write_name("Вертолёт")
         save_as_png(tan.canvas, "result_images/vertolyot.png")
 
+    def chaynik(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = -2000
+        self.tt.goto(x0, y0)
+        self.tt.left(135)
+        self.draw_simple("7 параллелограмм", reverse_path=True)
+        self.tt.right(45)
+        self.tt.forward(self.l4 / 2)
+        self.tt.right(90)
+        self.draw_simple("1 большой треугольник", start=4, add_path=2)
+        self.draw_simple("2 большой треугольник", reverse_path=True)
+        self.tt.right(45)
+        self.draw_simple("3 средний треугольник")
+        self.tt.left(90)
+        self.tt.forward(self.l4 / 4)
+        self.tt.left(90)
+        self.draw_simple("4 маленький треугольник", reverse_path=True, add_path=1)
+        self.tt.right(90)
+        self.draw_simple("6 квадрат", add_path=2)
+        self.draw_simple("5 маленький треугольник", reverse_path=True)
+        self.write_name("Чайник")
+        save_as_png(tan.canvas, "result_images/chaynik.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
 # tan.home()
 # tan.korablik()
 # tan.utka()
-tan.vertolyot()
+# tan.vertolyot()
+tan.chaynik()
