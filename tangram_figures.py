@@ -249,6 +249,26 @@ class Tangram:
         self.write_name("Кораблик 2")
         save_as_png(tan.canvas, "result_images/korablik2.png")
 
+    def melnica(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = 0
+        self.tt.left(45)
+        self.tt.goto(x0, y0)
+        self.draw_simple("4 маленький треугольник", start=2, add_path=1)
+        self.draw_simple("6 квадрат", add_path=1)
+        self.draw_simple("5 маленький треугольник", start=4)
+        self.tt.backward(self.l4 * 2)
+        self.tt.left(90)
+        self.draw_simple("1 большой треугольник")
+        self.tt.left(180)
+        self.draw_simple("2 большой треугольник")
+        self.tt.right(90)
+        self.draw_simple("3 средний треугольник", add_path=2)
+        self.draw_simple("7 параллелограмм", reverse_path=True)
+        self.write_name("Мельница")
+        save_as_png(tan.canvas, "result_images/melnica.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -257,4 +277,5 @@ tan = Tangram(silhouette=True)
 # tan.utka()
 # tan.vertolyot()
 # tan.chaynik()
-tan.korablik2()
+# tan.korablik2()
+tan.melnica()
