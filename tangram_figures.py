@@ -292,6 +292,23 @@ class Tangram:
         self.write_name("Заяц")
         save_as_png(tan.canvas, "result_images/zayac.png")
 
+    def rybka(self):
+        tan.add_canvas()
+        y0 = -750
+        x0 = -4000
+        self.tt.goto(x0, y0)
+        self.tt.left(45)
+        self.draw_simple("1 большой треугольник", add_path=1)
+        self.draw_simple("4 маленький треугольник", start=2, add_path=3)
+        self.draw_simple("2 большой треугольник")
+        self.tt.right(135)
+        self.draw_simple("3 средний треугольник", start=4, reverse_path=True, add_path=2)
+        self.draw_simple("7 параллелограмм", start=2, add_path=1)
+        self.draw_simple("5 маленький треугольник", start=2, add_path=3)
+        self.draw_simple("6 квадрат", reverse_path=True)
+        self.write_name("Рыбка")
+        save_as_png(tan.canvas, "result_images/rybka.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -302,4 +319,5 @@ tan = Tangram(silhouette=True)
 # tan.chaynik()
 # tan.korablik2()
 # tan.melnica()
-tan.zayac()
+# tan.zayac()
+tan.rybka()
