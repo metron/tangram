@@ -269,6 +269,29 @@ class Tangram:
         self.write_name("Мельница")
         save_as_png(tan.canvas, "result_images/melnica.png")
 
+    def zayac(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = 4500
+        self.tt.goto(x0, y0)
+        self.tt.left(180)
+        self.draw_simple("4 маленький треугольник")
+        self.tt.left(90)
+        self.draw_simple("3 средний треугольник", start=4, add_path=1)
+        self.tt.right(90)
+        self.draw_simple("1 большой треугольник", start=2, add_path=1)
+        self.tt.right(45)
+        self.draw_simple("2 большой треугольник", add_path=3)
+        self.tt.forward(self.l4 / 2)
+        self.draw_simple("5 маленький треугольник", start=1, reverse_path=True)
+        self.tt.right(180)
+        self.tt.forward(self.l4 / 2 + self.l2)
+        self.draw_simple("6 квадрат", add_path=1)
+        self.tt.left(45)
+        self.draw_simple("7 параллелограмм", start=2, reverse_path=True)
+        self.write_name("Заяц")
+        save_as_png(tan.canvas, "result_images/zayac.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -278,4 +301,5 @@ tan = Tangram(silhouette=True)
 # tan.vertolyot()
 # tan.chaynik()
 # tan.korablik2()
-tan.melnica()
+# tan.melnica()
+tan.zayac()
