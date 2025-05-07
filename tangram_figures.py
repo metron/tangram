@@ -309,6 +309,28 @@ class Tangram:
         self.write_name("Рыбка")
         save_as_png(tan.canvas, "result_images/rybka.png")
 
+    def jolka(self):
+        tan.add_canvas()
+        y0 = -3000
+        x0 = 0
+        self.tt.goto(x0, y0)
+        self.tt.backward(self.l4)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=4)
+        self.tt.forward(self.l4 / 2)
+        self.draw_simple("1 большой треугольник", start=4)
+        self.tt.right(90)
+        self.draw_simple("2 большой треугольник", start=4, add_path=2)
+        self.tt.left(45)
+        self.draw_simple("7 параллелограмм", start=2)
+        self.tt.right(180)
+        self.draw_simple("4 маленький треугольник", start=2, reverse_path=True, add_path=1)
+        self.tt.left(45)
+        self.draw_simple("5 маленький треугольник", reverse_path=True)
+        self.tt.left(180)
+        self.draw_simple("3 средний треугольник", start=2)
+        self.write_name("Ёлка")
+        save_as_png(tan.canvas, "result_images/jolka.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -320,4 +342,5 @@ tan = Tangram(silhouette=True)
 # tan.korablik2()
 # tan.melnica()
 # tan.zayac()
-tan.rybka()
+# tan.rybka()
+tan.jolka()
