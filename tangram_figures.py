@@ -67,7 +67,7 @@ class Tangram:
     def write_name(self, name):
         self.tt.goto(self.WIDTH / 2 - 3000, -self.HEIGHT / 2 + 500)
         self.tt.color("black")
-        self.tt.write(name, font=("DejaVuSans", 1800, "normal"))
+        self.tt.write(name, font=("DejaVuSans", 1750, "normal"))
 
     def follow_steps(self, operations, steps_num, start, reverse_path):
         for i in range(steps_num):
@@ -395,6 +395,26 @@ class Tangram:
         self.write_name("Ракета")
         save_as_png(tan.canvas, "result_images/raketa.png")
 
+    def zhiraf(self):
+        tan.add_canvas()
+        y0 = -1000
+        x0 = 0
+        self.tt.goto(x0, y0)
+        self.draw_simple("1 большой треугольник", reverse_path=True, add_path=3)
+        self.tt.left(45)
+        self.draw_simple("4 маленький треугольник", reverse_path=True, add_path=1)
+        self.tt.right(180)
+        self.draw_simple("2 большой треугольник", reverse_path=True)
+        self.tt.right(135)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=1)
+        self.tt.right(45)
+        self.draw_simple("7 параллелограмм", reverse_path=True, add_path=2)
+        self.draw_simple("5 маленький треугольник", start=4, add_path=2)
+        self.tt.forward(self.l3 / 2)
+        self.draw_simple("3 средний треугольник", start=4, reverse_path=True)
+        self.write_name("Жираф")
+        save_as_png(tan.canvas, "result_images/zhiraf.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -410,4 +430,5 @@ tan = Tangram(silhouette=True)
 # tan.jolka()
 # tan.pyramida()
 # tan.petushok()
-tan.raketa()
+# tan.raketa()
+tan.zhiraf()
