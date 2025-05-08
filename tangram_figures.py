@@ -371,6 +371,30 @@ class Tangram:
         self.write_name("Петушок")
         save_as_png(tan.canvas, "result_images/petushok.png")
 
+    def raketa(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = -4000
+        self.tt.goto(x0, y0)
+        self.tt.left(45)
+        self.draw_simple("4 маленький треугольник", start=4, add_path=1)
+        self.tt.right(90)
+        self.draw_simple("3 средний треугольник")
+        self.tt.left(45)
+        self.draw_simple("1 большой треугольник", add_path=1)
+        self.tt.left(45)
+        self.draw_simple("6 квадрат", add_path=1)
+        self.tt.right(45)
+        self.draw_simple("5 маленький треугольник")
+        self.tt.right(135)
+        self.tt.forward(self.l4)
+        self.draw_simple("2 большой треугольник", start=4, reverse_path=True, add_path=2)
+        self.tt.forward(self.l1 / 2)
+        self.tt.right(45)
+        self.draw_simple("7 параллелограмм", start=2, reverse_path=True)
+        self.write_name("Ракета")
+        save_as_png(tan.canvas, "result_images/raketa.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -385,4 +409,5 @@ tan = Tangram(silhouette=True)
 # tan.rybka()
 # tan.jolka()
 # tan.pyramida()
-tan.petushok()
+# tan.petushok()
+tan.raketa()
