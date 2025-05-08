@@ -415,6 +415,23 @@ class Tangram:
         self.write_name("Жираф")
         save_as_png(tan.canvas, "result_images/zhiraf.png")
 
+    def verblud(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = -4500
+        self.tt.goto(x0, y0)
+        self.draw_simple("4 маленький треугольник", add_path=1)
+        self.draw_simple("1 большой треугольник", start=4)
+        self.draw_simple("3 средний треугольник", reverse_path=True, add_path=1)
+        self.tt.left(45)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=1)
+        self.draw_simple("5 маленький треугольник", reverse_path=True)
+        self.tt.right(135)
+        self.draw_simple("2 большой треугольник")
+        self.draw_simple("7 параллелограмм", reverse_path=True)
+        self.write_name("Верблюд")
+        save_as_png(tan.canvas, "result_images/verblud.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -431,4 +448,5 @@ tan = Tangram(silhouette=True)
 # tan.pyramida()
 # tan.petushok()
 # tan.raketa()
-tan.zhiraf()
+# tan.zhiraf()
+tan.verblud()
