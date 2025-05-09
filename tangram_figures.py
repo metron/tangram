@@ -471,6 +471,28 @@ class Tangram:
         self.write_name("Ракета 2")
         save_as_png(tan.canvas, "result_images/raketa2.png")
 
+    def gus(self):
+        tan.add_canvas()
+        y0 = 0
+        x0 = 4000
+        self.tt.goto(x0, y0)
+        self.tt.left(90)
+        self.draw_simple("4 маленький треугольник", start=2, reverse_path=True, add_path=3)
+        self.tt.left(90)
+        self.tt.forward(self.l1 / 2)
+        self.tt.left(180)
+        self.draw_simple("1 большой треугольник", reverse_path=True)
+        self.tt.right(90)
+        self.draw_simple("5 маленький треугольник", start=2)
+        self.tt.right(135)
+        self.draw_simple("2 большой треугольник", start=4, add_path=2)
+        self.draw_simple("7 параллелограмм", start=2, reverse_path=True, add_path=3)
+        self.tt.left(45)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=2)
+        self.draw_simple("3 средний треугольник")
+        self.write_name("Гусь")
+        save_as_png(tan.canvas, "result_images/gus.png")
+
 tan = Tangram()
 
 # tan.pistolet()
@@ -490,4 +512,5 @@ tan = Tangram()
 # tan.zhiraf()
 # tan.verblud()
 # tan.koshka()
-tan.raketa2()
+# tan.raketa2()
+tan.gus()
