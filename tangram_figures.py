@@ -22,7 +22,7 @@ def save_as_eps(canvas, file_name):
 
 
 class Tangram:
-    def __init__(self, l1=103, silhouette=False):
+    def __init__(self, l1=103, silhouette=True):
         self.l1 = l1 = mm_to_px(l1)  # l1 - гипотенуза большого треугольника
         self.l2 = l2 = get_leg_length(l1)  # катет большого треугольника = гипотенуза среднего треугольника
         self.l3 = l3 = get_leg_length(l2)  # катет среднего треугольника = гипотенуза маленького треугольника
@@ -451,7 +451,27 @@ class Tangram:
         self.write_name("Кошка")
         save_as_png(tan.canvas, "result_images/koshka.png")
 
-tan = Tangram(silhouette=True)
+    def raketa2(self):
+        tan.add_canvas()
+        y0 = -2500
+        x0 = -500
+        self.tt.goto(x0, y0)
+        self.tt.left(90)
+        self.draw_simple("6 квадрат", add_path=2)
+        self.tt.forward((self.l2 + self.l4) / 2)
+        self.draw_simple("4 маленький треугольник", start=2)
+        self.tt.left(90)
+        self.draw_simple("5 маленький треугольник", start=4)
+        self.draw_simple("1 большой треугольник", start=2, reverse_path=True, add_path=2)
+        self.draw_simple("3 средний треугольник", add_path=1)
+        self.tt.left(90)
+        self.draw_simple("2 большой треугольник", start=2, reverse_path=True, add_path=1)
+        self.tt.right(45)
+        self.draw_simple("7 параллелограмм")
+        self.write_name("Ракета 2")
+        save_as_png(tan.canvas, "result_images/raketa2.png")
+
+tan = Tangram()
 
 # tan.pistolet()
 # tan.home()
@@ -469,4 +489,5 @@ tan = Tangram(silhouette=True)
 # tan.raketa()
 # tan.zhiraf()
 # tan.verblud()
-tan.koshka()
+# tan.koshka()
+tan.raketa2()
