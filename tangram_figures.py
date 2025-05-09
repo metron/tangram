@@ -432,6 +432,25 @@ class Tangram:
         self.write_name("Верблюд")
         save_as_png(tan.canvas, "result_images/verblud.png")
 
+    def koshka(self):
+        tan.add_canvas()
+        y0 = -1500
+        x0 = 4000
+        self.tt.goto(x0, y0)
+        self.tt.left(180)
+        self.draw_simple("7 параллелограмм", start=2, reverse_path=True)
+        self.draw_simple("1 большой треугольник", start=4, add_path=1)
+        self.tt.right(45)
+        self.draw_simple("2 большой треугольник", start=4, add_path=1)
+        self.tt.right(135)
+        self.draw_simple("3 средний треугольник", reverse_path=True)
+        self.tt.right(135)
+        self.draw_simple("6 квадрат", add_path=2)
+        self.draw_simple("4 маленький треугольник", start=2, reverse_path=True, add_path=1)
+        self.draw_simple("5 маленький треугольник", start=4)
+        self.write_name("Кошка")
+        save_as_png(tan.canvas, "result_images/koshka.png")
+
 tan = Tangram(silhouette=True)
 
 # tan.pistolet()
@@ -449,4 +468,5 @@ tan = Tangram(silhouette=True)
 # tan.petushok()
 # tan.raketa()
 # tan.zhiraf()
-tan.verblud()
+# tan.verblud()
+tan.koshka()
