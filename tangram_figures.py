@@ -554,6 +554,24 @@ class Tangram:
         self.write_name("Лодочка")
         save_as_png(tan.canvas, "result_images/lodochka.png")
 
+    def akula(self):
+        tan.add_canvas()
+        y0 = -self.l4 / 2
+        x0 = 0
+        self.tt.goto(x0, y0)
+        self.draw_simple("1 большой треугольник", reverse_path=True)
+        self.draw_simple("4 маленький треугольник", start=2)
+        self.tt.left(45)
+        self.draw_simple("2 большой треугольник", start=4, reverse_path=True)
+        self.tt.left(90)
+        self.draw_simple("5 маленький треугольник", start=2, reverse_path=True, add_path=1)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=1)
+        self.tt.right(45)
+        self.draw_simple("7 параллелограмм", reverse_path=True, add_path=4)
+        self.draw_simple("3 средний треугольник", start=4)
+        self.write_name("Акула")
+        save_as_png(tan.canvas, "result_images/akula.png")
+
 tan = Tangram()
 
 # tan.pistolet()
@@ -577,4 +595,5 @@ tan = Tangram()
 # tan.gus()
 # tan.voron()
 # tan.chelovek()
-tan.lodochka()
+# tan.lodochka()
+tan.akula()
