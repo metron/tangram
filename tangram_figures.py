@@ -512,6 +512,30 @@ class Tangram:
         self.write_name("Ворон")
         save_as_png(tan.canvas, "result_images/voron.png")
 
+    def chelovek(self):
+        tan.add_canvas()
+        y0 = -500
+        x0 = 3000
+        self.tt.goto(x0, y0)
+        self.draw_simple("4 маленький треугольник", reverse_path=True)
+        self.tt.forward(self.l3 / 2)
+        self.tt.left(180)
+        self.draw_simple("3 средний треугольник", reverse_path=True)
+        self.tt.forward(self.l2 * 2 / 3)
+        self.draw_simple("1 большой треугольник", start=4, add_path=3)
+        self.tt.backward(self.l3 / 2)
+        self.draw_simple("5 маленький треугольник", reverse_path=True)
+        self.tt.left(180)
+        self.tt.forward((self.l1 - self.l3) / 2)
+        self.draw_simple("2 большой треугольник", add_path=4)
+        self.draw_simple("7 параллелограмм", start=2, reverse_path=True)
+        self.tt.right(90)
+        self.tt.forward(self.l2 / 2)
+        self.tt.right(45)
+        self.draw_simple("6 квадрат")
+        self.write_name("Человек")
+        save_as_png(tan.canvas, "result_images/chelovek.png")
+
 tan = Tangram()
 
 # tan.pistolet()
@@ -533,4 +557,5 @@ tan = Tangram()
 # tan.koshka()
 # tan.raketa2()
 # tan.gus()
-tan.voron()
+# tan.voron()
+tan.chelovek()
