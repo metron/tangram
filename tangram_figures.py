@@ -27,6 +27,7 @@ class Tangram:
         self.l2 = l2 = get_leg_length(l1)  # катет большого треугольника = гипотенуза среднего треугольника
         self.l3 = l3 = get_leg_length(l2)  # катет среднего треугольника = гипотенуза маленького треугольника
         self.l4 = l4 = get_leg_length(l3)  # катет маленького треугольника = сторона квадрата
+        self.l5 = get_leg_length(l4)
         self.silhouette = silhouette
 
         self.simples = {
@@ -628,6 +629,24 @@ class Tangram:
         self.write_name("Кристалл 2")
         save_as_png(tan.canvas, "result_images/kristall2.png")
 
+    def stol(self):
+        tan.add_canvas()
+        y0 = self.l5 / 2
+        x0 = - (self.l1 * 3 / 4) - self.l5
+        self.tt.goto(x0, y0)
+        self.tt.right(45)
+        self.draw_simple("4 маленький треугольник", start=2)
+        self.draw_simple("6 квадрат", reverse_path=True, add_path=3)
+        self.draw_simple("5 маленький треугольник", start=4, reverse_path=True, add_path=1)
+        self.tt.right(90)
+        self.draw_simple("1 большой треугольник", start=4)
+        self.draw_simple("2 большой треугольник", start=2, reverse_path=True, add_path=1)
+        self.tt.left(45)
+        self.draw_simple("3 средний треугольник", start=2, reverse_path=True, add_path=2)
+        self.draw_simple("7 параллелограмм")
+        self.write_name("Стол")
+        save_as_png(tan.canvas, "result_images/stol.png")
+
 tan = Tangram()
 
 # tan.pistolet()
@@ -655,4 +674,5 @@ tan = Tangram()
 # tan.akula()
 # tan.konik()
 # tan.kristall1()
-tan.kristall2()
+# tan.kristall2()
+tan.stol()
