@@ -595,6 +595,23 @@ class Tangram:
         self.write_name("Конь")
         save_as_png(tan.canvas, "result_images/konik.png")
 
+    def kristall1(self):
+        tan.add_canvas()
+        y0 = - self.l3 / 2
+        x0 = - self.l1 / 2
+        self.tt.goto(x0, y0)
+        self.draw_simple("1 большой треугольник", reverse_path=True)
+        self.draw_simple("2 большой треугольник")
+        self.tt.left(90)
+        self.draw_simple("4 маленький треугольник", add_path=1)
+        self.tt.right(45)
+        self.draw_simple("6 квадрат", add_path=1)
+        self.draw_simple("5 маленький треугольник", start=2, add_path=4)
+        self.draw_simple("7 параллелограмм", reverse_path=True, add_path=3)
+        self.draw_simple("3 средний треугольник", reverse_path=True)
+        self.write_name("Кристалл 1")
+        save_as_png(tan.canvas, "result_images/kristall1.png")
+
 tan = Tangram()
 
 # tan.pistolet()
@@ -620,4 +637,5 @@ tan = Tangram()
 # tan.chelovek()
 # tan.lodochka()
 # tan.akula()
-tan.konik()
+# tan.konik()
+tan.kristall1()
